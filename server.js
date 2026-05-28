@@ -174,12 +174,12 @@ app.post('/api/admin/productos', verifyToken, upload.single('imagen'), async (re
     }
 });
 
-// Rutas de las páginas html (Corregido para evitar errores en path-to-regexp)
+// --- ENRUTAMIENTO DE PÁGINAS (Sintaxis universal limpia para Express moderno) ---
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'admin.html'));
 });
 
-app.get('(.*)', (req, res) => {
+app.get('/:splat*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
