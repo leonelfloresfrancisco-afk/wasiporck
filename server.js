@@ -81,9 +81,7 @@ async function initDB() {
                 telefono VARCHAR(20) NOT NULL,
                 direccion TEXT NOT NULL,
                 total DECIMAL(10,2) NOT NULL,
-                productos TEXT NOT NULL,
-                estado VARCHAR(50) DEFAULT 'pendiente',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                productos TEXT NOT NULL
             )
         `);
 
@@ -176,12 +174,12 @@ app.post('/api/admin/productos', verifyToken, upload.single('imagen'), async (re
     }
 });
 
-// Rutas de las páginas html
+// Rutas de las páginas html (Corregido para evitar errores en path-to-regexp)
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'admin.html'));
 });
 
-app.get('*', (req, res) => {
+app.get('(.*)', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
