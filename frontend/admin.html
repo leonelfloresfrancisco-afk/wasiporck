@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WasiPorck — Panel de Control</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
+    <header>
+        <nav>
+            <div class="logo">Consola WasiPorck</div>
+            <ul>
+                <li><a href="/">Regresar a la Tienda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="form-box" id="box-login-admin">
+        <h2>Ingreso Administrativo</h2>
+        <div class="form-group">
+            <label>Usuario / Correo:</label>
+            <input type="email" id="adm-mail" value="admin@wasiporck.com">
+        </div>
+        <div class="form-group">
+            <label>Contraseña:</label>
+            <input type="password" id="adm-pass" placeholder="Ingresa tu contraseña">
+        </div>
+        <button onclick="loginAdmin(document.getElementById('adm-mail').value, document.getElementById('adm-pass').value)">Ingresar al Sistema</button>
+    </main>
+
+    <main class="form-box" id="box-crud-admin" style="display:none;">
+        <h2>Publicar Nuevo Producto</h2>
+        <form onsubmit="event.preventDefault(); registrarProductoForm(this);">
+            <div class="form-group">
+                <label>Nombre del Producto / Raza:</label>
+                <input type="text" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Descripción detallada:</label>
+                <textarea name="descripcion" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Precio Unitario (S/.):</label>
+                <input type="number" name="precio" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label>Stock disponible:</label>
+                <input type="number" name="stock" value="1">
+            </div>
+            <div class="form-group">
+                <label>Categoría:</label>
+                <select name="tipo">
+                    <option value="cerdo">Cerdos (Cría / Engorde)</option>
+                    <option value="alimento">Alimentos para Cerdos</option>
+                    <option value="accesorio">Accesorios de Granja</option>
+                    <option value="seminal">Dosis Seminales</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Edad (Opcional - solo cerdos):</label>
+                <input type="text" name="edad">
+            </div>
+            <div class="form-group">
+                <label>Género (Opcional - solo cerdos):</label>
+                <input type="text" name="genero">
+            </div>
+            <div class="form-group">
+                <label>Imagen del Producto:</label>
+                <input type="file" name="imagen" accept="image/*" required>
+            </div>
+            <button type="submit">Guardar y Enviar a Cloudinary</button>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
