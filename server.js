@@ -174,12 +174,12 @@ app.post('/api/admin/productos', verifyToken, upload.single('imagen'), async (re
     }
 });
 
-// --- ENRUTAMIENTO DE PÁGINAS (Sintaxis universal limpia para Express moderno) ---
+// --- ENRUTAMIENTO DE PÁGINAS (Sintaxis universal limpia para Express v5) ---
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'admin.html'));
 });
 
-app.get('/:splat*', (req, res) => {
+app.get('/:path*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
